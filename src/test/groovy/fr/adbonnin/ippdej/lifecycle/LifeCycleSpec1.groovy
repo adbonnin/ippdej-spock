@@ -1,4 +1,4 @@
-package fr.adbonnin.ippdej
+package fr.adbonnin.ippdej.lifecycle
 
 import spock.lang.AutoCleanup
 import spock.lang.Shared

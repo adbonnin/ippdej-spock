@@ -1,4 +1,4 @@
-package fr.adbonnin.ippdej
+package fr.adbonnin.ippdej.base
 
 import spock.lang.*
 

@@ -1,29 +1,28 @@
-package fr.adbonnin.ippdej
+package fr.adbonnin.ippdej.uss.service
 
-import fr.adbonnin.ippdej.business.Transporteur
-import fr.adbonnin.ippdej.domain.dao.PersonnelDao
-import fr.adbonnin.ippdej.domain.model.Personnel
-import fr.adbonnin.ippdej.service.TransporteurService
+import fr.adbonnin.ippdej.uss.business.Teleporteur
+import fr.adbonnin.ippdej.uss.domain.dao.PersonnelDao
+import fr.adbonnin.ippdej.uss.domain.model.Personnel
 import spock.lang.Specification
 import spock.lang.Subject
 
-class TransporteurServiceSpec extends Specification {
+class TeleporteurServiceSpec extends Specification {
 
-    def mockTransporteur = Mock(Transporteur)
-    def mockDao = Mock(PersonnelDao)
+    def mockTransporteur = Mock(Teleporteur)
+    def mockPersonnelDao = Mock(PersonnelDao)
 
     @Subject
-    def service = new TransporteurService(mockTransporteur, mockDao)
+    def service = new TeleporteurServiceImpl(mockTransporteur, mockPersonnelDao)
 
     def "doit transporter les personnels"() {
         when:
         def result = service.transporter('Spock')
 
         then:
-        1 * mockDao.rechercherPersonnels(_) >> personnels
+        1 * mockPersonnelDao.rechercherPersonnels(_) >> personnels
 
         then:
-        expectedTransporter * mockTransporteur.transporter(personnels) >> transportReussi
+        expectedTransporter * mockTransporteur.teleporter(personnels) >> transportReussi
 
         and:
         result == expectedResult
